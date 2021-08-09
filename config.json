@@ -1,0 +1,62 @@
+{
+  "page_properties": {
+    "favicon": "images/favicon.png",
+    "page_title": "Fox Eloading",
+    "banner_text": "Convenient Eloading",
+    "footer_text": "DafoxTech.",
+    "footer_url": "https://www.dafoxtech.com"
+  },
+  "buttons": {
+    "button_buy_wifi": false,
+    "button_buy_voucher": false,
+    "button_view_vouchers": false,
+    "button_view_rates": false
+  },
+  "banners": {
+    "banners": [
+      "images/eloading-machine-kiosk.gif"
+    ]
+  },
+  "sounds": {
+    "connected_sound": {
+      "src": "sounds/connected.mp3",
+      "format": "audio/mpeg",
+      "loop": false
+    },
+    "disconnected_sound": {
+      "src": "sounds/disconnected.mp3",
+      "format": "audio/mpeg",
+      "loop": false
+    },
+    "coin_inserted": {
+      "src": "sounds/coin-inserted.mp3",
+      "format": "audio/mpeg",
+      "loop": false
+    },
+    "error_sound": {
+      "src": "sounds/error.mp3",
+      "format": "audio/mpeg",
+      "loop": false
+    },
+    "eload_successful": {
+      "src": "sounds/eload-successful.mp3",
+      "format": "audio/mpeg",
+      "loop": false
+    },
+    "eload_failed": {
+      "src": "sounds/eload-failed.mp3",
+      "format": "audio/mpeg",
+      "loop": false
+    },
+    "eload_processing": {
+      "src": "sounds/eload_processing.mp3",
+      "format": "audio/mpeg",
+      "loop": false
+    },
+    "eload_queued": {
+      "src": "sounds/eload_queued.mp3",
+      "format": "audio/mpeg",
+      "loop": false
+    }
+  }
+}

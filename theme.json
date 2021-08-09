@@ -1,5 +1,5 @@
 {
-  "name": "AdoPiSoft Default Theme",
+  "name": "Fox Eloading Default Theme",
   "version": "1.0.0",
   "fields": [
     {
@@ -17,31 +17,31 @@
           "field_id": "page_title",
           "label": "Page Title",
           "type": "text",
-          "defaultValue": "AdoPiSoft WiFi Hostspot"
+          "defaultValue": "Fox Eloading"
         },
         {
           "field_id": "banner_text",
           "label": "Banner Text",
           "type": "text",
-          "defaultValue": "Affordable Internet Connectivity"
+          "defaultValue": "Convenient E-loading 24 hours"
         },
         {
           "field_id": "redirect_to",
           "label": "Redirect To",
           "type": "text",
-          "defaultValue": "https://www.adopisoft.com/cp"
+          "defaultValue": "https://www.dafoxtech.com"
         },
         {
           "field_id": "footer_text",
           "label": "Powered By Text",
           "type": "text",
-          "defaultValue": "AdoPiSoft"
+          "defaultValue": "DafoxTech."
         },
         {
           "field_id": "footer_url",
           "label": "Powered By URL",
           "type": "text",
-          "defaultValue": "https://adopisoft.com"
+          "defaultValue": "https://www.dafoxtech.com"
         },
 
         {
@@ -68,36 +68,11 @@
       "legend": "Buttons",
       "fields": [
         {
-          "field_id": "button_buy_wifi",
-          "label": "Show Buy Wifi Button",
-          "type": "checkbox",
-          "defaultValue": true
-        },
-        {
-          "field_id": "button_buy_voucher",
-          "label": "Show Buy Voucher Button",
-          "type": "checkbox",
-          "defaultValue": true
-        },
-        {
           "field_id": "button_buy_eload",
           "label": "Show Buy E-Load Button",
           "type": "checkbox",
           "defaultValue": true
         },
-        {
-          "field_id": "button_view_vouchers",
-          "label": "Show View Vouchers Button",
-          "type": "checkbox",
-          "defaultValue": true
-        },
-        {
-          "field_id": "button_view_rates",
-          "label": "Show View Rates Button",
-          "type": "checkbox",
-          "defaultValue": true
-        },
-
         {
           "field_id": "button_my_account",
           "label": "Show My Account Button",
@@ -107,26 +82,6 @@
         {
           "field_id": "submit",
           "type": "submit"
-        }
-      ]
-    },
-    {
-      "field_group_id": "wifi_icons",
-      "legend": "WiFi Icons",
-      "fields": [
-        {
-          "field_id": "wifi_connected_icon",
-          "label": "Connected Icon",
-          "type": "image",
-          "required": true,
-          "defaultValue": "images/wifi-connected.png"
-        },
-        {
-          "field_id": "wifi_disconnected_icon",
-          "label": "Disconnected Icon",
-          "type": "image",
-          "required": true,
-          "defaultValue": "images/wifi-disconnected.png"
         }
       ]
     },
@@ -196,27 +151,6 @@
           "required": false,
           "allow_loop": true,
           "defaultValue": null
-        },
-
-        {
-          "field_id": "connected_sound",
-          "label": "Connected Sound",
-          "type": "sound",
-          "required": true,
-          "defaultValue": {
-            "src": "sounds/connected.mp3",
-            "format": "audio/mpeg"
-          }
-        },
-        {
-          "field_id": "disconnected_sound",
-          "label": "Disconnected Sound",
-          "type": "sound",
-          "required": true,
-          "defaultValue": {
-            "src": "sounds/disconnected.mp3",
-            "format": "audio/mpeg"
-          }
         },
         {
           "field_id": "coin_inserted",
