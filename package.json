@@ -1,14 +1,14 @@
 {
   "name": "captive-portal",
   "version": "1.0.0",
-  "description": "AdoPiSoft default captive portal theme",
+  "description": "Ado Fox custom portal for eload",
   "main": "main.js",
   "scripts": {
     "test": "eslint ./app"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AdoPiSoft-Themes/adopisoft.git"
+    "url": "git+https://github.com/DafoxTech/Ado-Offline-Eload-CP.git"
   },
   "keywords": [
     "adopisoft",
@@ -18,9 +18,9 @@
   "author": "AdoPiSoft",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AdoPiSoft-Themes/adopisoft/issues"
+    "url": "https://github.com/DafoxTech/Ado-Offline-Eload-CP/issues"
   },
-  "homepage": "https://github.com/AdoPiSoft-Themes/adopisoft#readme",
+  "homepage": "https://github.com/DafoxTech/Ado-Offline-Eload-CP#readme",
   "devDependencies": {
     "eslint": "^7.23.0",
     "eslint-config-es3": "^1.0.0"
