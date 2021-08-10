@@ -25,7 +25,7 @@ define([
         self.allow_retry(true);
         sounds.eload_queued.play();
       }
-    }, 15000);
+    }, 60000);
 
     sounds.eload_processing.play();
     self.onEloadStatus = function(data) {
