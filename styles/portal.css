@@ -121,3 +121,12 @@ img.img-full {
 .unread-indicator {
   z-index: 999;
 }
+
+
+.mt-20{
+  margin-top: 20px;
+}
+
+.pb-12{
+  padding-bottom: 12px;
+}
