@@ -2,7 +2,7 @@
   "page_properties": {
     "favicon": "images/favicon.png",
     "page_title": "Fox Eloading",
-    "banner_text": "Convenient Eloading",
+    "banner_text": "E-Load, E-PINS and Gcash Cash-in Available here!",
     "footer_text": "DafoxTech.",
     "footer_url": "https://www.dafoxtech.com"
   },
@@ -14,7 +14,7 @@
   },
   "banners": {
     "banners": [
-      "images/eloading-machine-kiosk.gif"
+      "images/eloading-banner.png"
     ]
   },
   "sounds": {
