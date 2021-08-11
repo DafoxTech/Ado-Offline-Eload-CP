@@ -44,6 +44,7 @@ define([
 
       self.loadingCustomer(true);
       http.getEloadClientData(acc_number, function(err, data) {
+        self.customer(null);
         self.loadingCustomer(false);
         if (err) return http.catchError(err);
 
