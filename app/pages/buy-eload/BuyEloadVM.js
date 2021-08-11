@@ -51,11 +51,11 @@ define([
           self.customer(data.customer);
           self.last_purchase(data.last_purchase);
         }
-
       });
 
       self.loadingProviders(true);
       http.getEloadProviders(acc_number, function(err, data) {
+        self.active_provider(null);
         if (err) return http.catchError(err);
 
         self.loadingProviders(false);
