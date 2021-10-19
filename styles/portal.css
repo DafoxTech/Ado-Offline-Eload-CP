@@ -2,7 +2,6 @@ h1, h2, h3, h4, h5, h6,
 
 #banners-con {
   margin: 0 auto;
-  max-width: 1080px;
 }
 
 #banner-text {
@@ -129,4 +128,51 @@ img.img-full {
 
 .pt-12{
   padding-top: 12px;
+}
+
+#home .btn {
+  width: 95%;
+  margin: 20px;
+  padding: 40px 30px;
+  font-size: 40px;
+}
+
+.btn-eload {
+  background-image: url(../images/btn-icons/eload.png);
+  background-repeat: no-repeat;
+  background-size: 125px;
+  background-position: -19px;
+}
+
+.btn-emoney {
+  background-image: url(../images/btn-icons/emoney.png);
+  background-repeat: no-repeat;
+  background-size: 105px;
+  background-position: 11px;
+}
+.btn-bills {
+  background-image: url(../images/btn-icons/bills.png);
+  background-repeat: no-repeat;
+  background-size: 85px;
+  background-position: 11px;
+}
+.btn-kiosk {
+  background-image: url(../images/btn-icons/kiosk.png);
+  background-repeat: no-repeat;
+  background-size: 85px;
+  background-position: 11px;
+}
+.btn-transactions {
+  background-image: url(../images/btn-icons/transactions.png);
+  background-repeat: no-repeat;
+  background-size: 85px;
+  background-position: 11px;
+}
+.btn .number {
+  border: 2px solid;
+  padding: 0px 10px;
+  border-radius: 100%;
+  font-weight: normal;
+  font-size: 25px;
+  margin-top: 0px;
 }

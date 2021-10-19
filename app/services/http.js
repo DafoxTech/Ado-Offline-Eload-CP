@@ -55,7 +55,8 @@ define([
       http.post('/client/sessions/' + s_id + '/pause', cb);
     };
     http.fetchRates = function (cb) {
-      http.get('/settings/timer/rates', cb);
+      // http.get('/settings/timer/rates', cb);
+      cb(null, "{}")
     };
     http.fetchCoinslots = function (cb) {
       http.get('/client/coinslots', cb);
