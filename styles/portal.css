@@ -130,7 +130,11 @@ img.img-full {
   padding-top: 12px;
 }
 
-#home .btn {
+#home, #eload-page {
+  margin-top: 60px;
+}
+
+#home .btn, #eload-page .btn {
   width: 95%;
   margin: 20px;
   padding: 40px 30px;
@@ -168,6 +172,61 @@ img.img-full {
   background-size: 85px;
   background-position: 11px;
 }
+
+.btn-globe-telecom {
+  background-image: url(../images/btn-icons/globe-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 74px;
+  background-position: 4px;
+}
+.btn-smart-telecom {
+  background-image: url(../images/btn-icons/smart-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 88px;
+  background-position: 4px;
+}
+.btn-tnt-telecom {
+  background-image: url(../images/btn-icons/tnt-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 88px;
+  background-position: 4px;
+}
+.btn-sun-telecom {
+  background-image: url(../images/btn-icons/sun-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 80px;
+  background-position: 11px;
+}
+.btn-dito-telecom {
+  background-image: url(../images/btn-icons/dito-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 83px;
+  background-position: 11px;
+}
+.btn-tm-telecom {
+  background-image: url(../images/btn-icons/tm-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 80px;
+  background-position: 11px;
+}
+.btn-cherry-prepa-telecom {
+  background-image: url(../images/btn-icons/cherry-prepa-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 80px;
+  background-position: 0px;
+}
+.btn-cignal-telecom {
+  background-image: url(../images/btn-icons/cignal-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 80px;
+  background-position: 1px;
+}
+.btn-gsat-telecom {
+  background-image: url(../images/btn-icons/gsat-telecom.png);
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: 21px;
+}
 .btn .number {
   border: 2px solid;
   padding: 0px 10px;
@@ -175,4 +234,10 @@ img.img-full {
   font-weight: normal;
   font-size: 25px;
   margin-top: 0px;
+}
+.btn .number.asterisk {
+  padding: 4px 8px 0px 8px;
+}
+.btn .number.hash-sign {
+  padding: 1px 8px 1px 8px;
 }
