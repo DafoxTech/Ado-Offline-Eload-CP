@@ -19,16 +19,6 @@ define([
     this.pageTitle = ko.observable(config.pageTitle());
     this.styles = ko.observableArray(config.styles());
 
-    this.buyWifi = function () {
-      payment.intent('wifi');
-      this.navigate('select-coinslot-page');
-    };
-
-    this.buyVoucher = function () {
-      this.intent('buy_voucher');
-      this.navigate('select-coinslot-page');
-    };
-
     this.buyEload = function () {
       this.navigate('buy-eload-page');
     };

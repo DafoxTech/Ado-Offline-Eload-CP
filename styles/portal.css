@@ -49,8 +49,21 @@ img.img-full {
 
 .phone-input{
   font-weight: bold;
-  font-size: 25px;
+  font-size: 80px;
   letter-spacing: 8px;
+  padding: 75px 35px;
+}
+.regular-load-input{
+  font-weight: bold;
+  font-size: 70px;
+  letter-spacing: 8px;
+  padding: 55px 35px;
+}
+.search-input {
+  margin-left: 11px;
+  font-size: 25px;
+  padding: 31px;
+  text-align: left;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -131,14 +144,28 @@ img.img-full {
 }
 
 #home, #eload-page {
-  margin-top: 60px;
+  margin-top: 18px;
 }
 
-#home .btn, #eload-page .btn {
+#home .btn, #eload-page .btn, .page .btn {
   width: 95%;
   margin: 20px;
   padding: 40px 30px;
   font-size: 40px;
+}
+
+#phone-number-page .btn {
+  padding: 30px;
+}
+#regular-load-page .btn {
+  padding: 30px;
+}
+#eload-products-page .btn {
+  font-size: 20px;
+}
+
+#eload-paying-page .btn {
+  padding: 20px 30px;
 }
 
 .btn-eload {
@@ -240,4 +267,8 @@ img.img-full {
 }
 .btn .number.hash-sign {
   padding: 1px 8px 1px 8px;
+}
+h1.acc-credits {
+  font-size: 100px;
+  margin-bottom: 38px;
 }

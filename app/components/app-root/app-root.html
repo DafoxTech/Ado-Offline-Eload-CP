@@ -1,7 +1,13 @@
 <div class="wrapper">
 
-  <div data-bind="if: $root.currentPage" class="padd-bottom">
-
+  <div data-bind="if: $root.currentPage" class="padd-bottom padd-top">
+    <div class="container padd-top">
+      <div class="col-md-12">
+        <div class="page-header">
+          <h1>DafoxTech Kiosk <small>Buy Load, Cash-in E-Money, Pay Bills, and more ...</small></h1>
+        </div>
+      </div>
+    </div>
     <div data-bind="component: $root.currentPage"></div>
 
   </div>

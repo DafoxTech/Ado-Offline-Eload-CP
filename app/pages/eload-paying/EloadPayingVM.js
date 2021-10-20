@@ -8,10 +8,7 @@ define([
 
   return function () {
     var self = this;
-    self.selectProvider = function (provider) {
-      order.setProvider(provider)
-      rootVM.navigate('phone-number-page');
-    }
+    
   };
 
 });
