@@ -1,0 +1,31 @@
+<div id="bill-due-date-page" class="container text-center page">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form" data-bind="submit: submit">
+        <div class="form-group">
+          <br>
+          <h1>
+            <strong>ENTER BILL DUE DATE:</strong>
+          </h1>
+          <br>
+          <input class="due-date-input form-control input-lg text-center" type="text" required id="due_date" name="due_date" autocomplete="off" placeholder="MM/DD/YYYY">
+          <h2 class="error text-right text-danger" style="line-height:70px">Invalid Date</h2>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-3">
+      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'bill-account-number-page'" style="margin-left: 0px;">
+        Delete
+        <span class="number asterisk">*</span>
+      </button>
+    </div>
+    <div class="col-md-3 col-md-offset-2">
+      <button class="btn btn-lg btn-primary btn-next" data-bind="click: submit">
+        Submit
+        <span class="number hash-sign">#</span>
+      </button>
+    </div>
+  </div>
+</div>

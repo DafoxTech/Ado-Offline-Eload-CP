@@ -1,7 +1,35 @@
-h1, h2, h3, h4, h5, h6,
+h1, h2, h3, h4, h5, h6{
+  margin: 0 auto;
+}
 
 #banners-con {
-  margin: 0 auto;
+}
+
+html {
+  touch-action:none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* hide input field arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* hide input field arrows */
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 #banner-text {
@@ -47,22 +75,22 @@ img.img-full {
   border-bottom-right-radius: 0px;
 }
 
-.phone-input{
+.phone-input, .account-input, .acc-name-input, .due-date-input{
   font-weight: bold;
-  font-size: 80px;
+  font-size: 50px;
   letter-spacing: 8px;
-  padding: 75px 35px;
+  padding: 45px;
 }
 .regular-load-input{
   font-weight: bold;
-  font-size: 70px;
+  font-size: 50px;
   letter-spacing: 8px;
-  padding: 55px 35px;
+  padding: 45px;
 }
 .search-input {
   margin-left: 11px;
-  font-size: 25px;
-  padding: 31px;
+  font-size: 18px;
+  padding: 21px;
   text-align: left;
 }
 
@@ -134,7 +162,6 @@ img.img-full {
   z-index: 999;
 }
 
-
 .mt-20{
   margin-top: 20px;
 }
@@ -143,15 +170,19 @@ img.img-full {
   padding-top: 12px;
 }
 
-#home, #eload-page {
+#eload-page {
   margin-top: 18px;
 }
 
-#home .btn, #eload-page .btn, .page .btn {
-  width: 95%;
-  margin: 20px;
-  padding: 40px 30px;
-  font-size: 40px;
+.page .btn, #home .btn {
+  width: 90%;
+  margin: 15px;
+  padding: 20px 20px;
+  font-size: 20px;
+}
+#home .btn {
+  font-size: 30px;
+  width: 85%;
 }
 
 #phone-number-page .btn {
@@ -160,7 +191,7 @@ img.img-full {
 #regular-load-page .btn {
   padding: 30px;
 }
-#eload-products-page .btn {
+#eload-products-page .btn, #emoney-products-page .btn {
   font-size: 20px;
 }
 
@@ -171,97 +202,125 @@ img.img-full {
 .btn-eload {
   background-image: url(../images/btn-icons/eload.png);
   background-repeat: no-repeat;
-  background-size: 125px;
-  background-position: -19px;
+  background-size: 85px;
+  background-position: 0px;
 }
 
 .btn-emoney {
   background-image: url(../images/btn-icons/emoney.png);
   background-repeat: no-repeat;
-  background-size: 105px;
+  background-size: 75px;
   background-position: 11px;
 }
 .btn-bills {
   background-image: url(../images/btn-icons/bills.png);
   background-repeat: no-repeat;
-  background-size: 85px;
-  background-position: 11px;
+  background-size: 58px;
+  background-position: 21px;
 }
 .btn-kiosk {
   background-image: url(../images/btn-icons/kiosk.png);
   background-repeat: no-repeat;
-  background-size: 85px;
-  background-position: 11px;
+  background-size: 55px;
+  background-position: 15px;
 }
 .btn-transactions {
   background-image: url(../images/btn-icons/transactions.png);
   background-repeat: no-repeat;
-  background-size: 85px;
-  background-position: 11px;
+  background-size: 55px;
+  background-position: 10px;
 }
 
-.btn-globe-telecom {
-  background-image: url(../images/btn-icons/globe-telecom.png);
+.btn-globe {
+  background-image: url(../images/btn-icons/globe.png);
   background-repeat: no-repeat;
   background-size: 74px;
   background-position: 4px;
 }
-.btn-smart-telecom {
-  background-image: url(../images/btn-icons/smart-telecom.png);
+.btn-smart {
+  background-image: url(../images/btn-icons/smart.png);
   background-repeat: no-repeat;
   background-size: 88px;
   background-position: 4px;
 }
-.btn-tnt-telecom {
-  background-image: url(../images/btn-icons/tnt-telecom.png);
+.btn-tnt {
+  background-image: url(../images/btn-icons/tnt.png);
   background-repeat: no-repeat;
   background-size: 88px;
   background-position: 4px;
 }
-.btn-sun-telecom {
-  background-image: url(../images/btn-icons/sun-telecom.png);
+.btn-sun {
+  background-image: url(../images/btn-icons/sun.png);
   background-repeat: no-repeat;
   background-size: 80px;
   background-position: 11px;
 }
-.btn-dito-telecom {
-  background-image: url(../images/btn-icons/dito-telecom.png);
+.btn-dito {
+  background-image: url(../images/btn-icons/dito.png);
   background-repeat: no-repeat;
   background-size: 83px;
   background-position: 11px;
 }
-.btn-tm-telecom {
-  background-image: url(../images/btn-icons/tm-telecom.png);
+.btn-tm {
+  background-image: url(../images/btn-icons/tm.png);
   background-repeat: no-repeat;
   background-size: 80px;
   background-position: 11px;
 }
-.btn-cherry-prepa-telecom {
-  background-image: url(../images/btn-icons/cherry-prepa-telecom.png);
+.btn-cherry-prepa {
+  background-image: url(../images/btn-icons/cherry-prepa.png);
   background-repeat: no-repeat;
   background-size: 80px;
   background-position: 0px;
 }
-.btn-cignal-telecom {
-  background-image: url(../images/btn-icons/cignal-telecom.png);
+.btn-cignal {
+  background-image: url(../images/btn-icons/cignal.png);
   background-repeat: no-repeat;
   background-size: 80px;
   background-position: 1px;
 }
-.btn-gsat-telecom {
-  background-image: url(../images/btn-icons/gsat-telecom.png);
+.btn-gsat {
+  background-image: url(../images/btn-icons/gsat.png);
   background-repeat: no-repeat;
   background-size: 100px;
   background-position: 21px;
 }
-.btn .number {
-  border: 2px solid;
+.btn-game-pins {
+  background-image: url(../images/btn-icons/game-pins.png);
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: 5px;
+}
+.btn-meralco {
+  background-image: url(../images/btn-icons/meralco.png);
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: 5px;
+}
+.btn-gcash-icon {
+  background-image: url(../images/btn-icons/gcash-icon.png);
+  background-repeat: no-repeat;
+  background-size: 80px;
+  background-position: 15px;
+}
+.btn .number, .input-group .number {
+  border: 2px solid white;
+  color: white;
   padding: 0px 10px;
   border-radius: 100%;
   font-weight: normal;
   font-size: 25px;
   margin-top: 0px;
 }
+.input-group .input-group-addon {
+  background-color: #06a182;
+  padding-right: 0px;
+}
+
+.input-group .number {
+  margin: 10px;
+}
+
 .btn .number.asterisk {
   padding: 4px 8px 0px 8px;
 }
@@ -269,6 +328,60 @@ img.img-full {
   padding: 1px 8px 1px 8px;
 }
 h1.acc-credits {
-  font-size: 100px;
-  margin-bottom: 38px;
+  font-size: 75px;
+  margin: 20px;
+}
+
+#order-kiosk-page .menu .number{
+  position: absolute;
+  right: 38px;
+  top: 21px;
+  font-size: 31px;
+  border: 1px solid;
+  padding: 14px;
+  border-radius: 100%;
+  font-weight: bold;
+  color: black;
+  width: 51px;
+  height: 51px;
+}
+.kiosk-product {
+  white-space: pre-line;
+  padding: 2px 2px !important;
+  background-color: transparent !important;
+  border: 1px solid gray;
+  height: 340px;
+  max-height: 340px;
+  overflow: hidden;
+  line-height: 18px;
+}
+.kiosk-product p {
+  margin: 0;
+}
+.kiosk-product h2{
+  line-height: 28px;
+  margin: 0px;
+}
+.kiosk-product .desc{
+  line-height: 19px;
+  margin: 0px;
+  font-size: 18px;
+}
+
+.checkout-btn img{
+  margin-top: -8px;
+  height: 42px;
+}
+
+.prod-description {
+  vertical-align: middle !important;
+  padding: 0px !important;
+}
+.prod-description p{
+  max-height: 55px;
+  overflow: scroll;
+  padding: 4px 0px;
+  line-height: 15px;
+  font-size: 15px;
+  margin: 0;
 }

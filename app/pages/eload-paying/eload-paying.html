@@ -1,6 +1,6 @@
 <div id="eload-paying-page" class="container text-center page">
   <div class="row">
-    <div class="page-header">
+    <div class="">
       <h1>PLEASE PAY NOW</h1>
       <br/>
       <div class="progress">
@@ -13,21 +13,27 @@
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-primary">
-        <div class="panel-heading"><h2>Order Details</h2></div>
-        <div class="panel-body text-left">
+        <div class="panel-heading"><h3>Review Before Paying</h3></div>
+        <div class="panel-body text-left" style="padding-bottom: 5px;">
           <table class="table" style="margin-bottom: 0px;">
             <tbody>
               <tr>
-                <td><h2><strong>Phone Number:&nbsp;</strong></h2></td>
-                <td><h2>09103907717</h2></td>
+                <td><h3><strong>Phone:&nbsp;</strong></h3></td>
+                <td>
+                  <h3 data-bind="text: phone_number"></h3>
+                </td>
               </tr>
               <tr>
-                <td><h2><strong>E-Load:</strong></h2></td>
-                <td><h2>P10</h2></td>
+                <td><h3><strong>E-Load:</strong></h3></td>
+                <td>
+                  <h3 data-bind="text: product_keyword_formatted"></h3>
+                </td>
               </tr>
               <tr>
-                <td><h2><strong>Description:&nbsp;</strong></h2></td>
-                <td><h2>Regular Load P10</h2></td>
+                <td><h3><strong>Description:&nbsp;</strong></h3></td>
+                <td class="prod-description">
+                  <p data-bind="text: product_description"></p>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -35,8 +41,10 @@
         <div class="panel-footer">
           <table class="text-left" style="width:100%">
             <tr>
-              <td width="50%"><h2><strong>Price:&nbsp;</strong></h2></td>
-              <td width="50%"><h2>P13.00</h2></td>
+              <td width="50%" style="padding-left:8px"><h3><strong>Price:&nbsp;</strong></h3></td>
+              <td width="50%">
+                <h3 data-bind="text: price_formatted"></h3>
+              </td>
             </tr>
           </table>
         </div>
@@ -45,35 +53,38 @@
 
     <div class="col-md-6">
       <div class="panel panel-primary">
-        <div class="panel-heading"><h2>Your Credits</h2></div>
+        <div class="panel-heading"><h3>Your Credits</h3></div>
         <div class="panel-body">
-          <h1 class="acc-credits"> 
-            P0.00
+          <h1 class="acc-credits" data-bind="text: account_credits_formatted">
           </h1>
         </div>
         <div class="panel-footer">
-          <h2><strong>To Pay:</strong> <span>P13.00</span></h2>
+          <h2>
+            <strong>To Pay:</strong>
+            <span data-bind="text: to_pay_formatted"></span>
+          </h2>
         </div>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-3">
-      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'" style="margin-left: 0px;">
+    <div class="col-md-4">
+      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'eload-products-page'" style="margin-left: 0px;">
         Cancel
         <span class="number asterisk">*</span>
       </button>
     </div>
-    <div class="col-md-3 col-md-offset-6">
+    <div class="col-md-4 col-md-offset-4">
       <button class="btn btn-lg btn-primary btn-next" data-bind="click: submit">
-        Submit
+        <!-- ko if: is_reprocess -->
+        <span>Re-process</span>
+        <!-- /ko -->
+        <!-- ko ifnot: is_reprocess -->
+        <span>Submit</span>
+        <!-- /ko -->
         <span class="number hash-sign">#</span>
       </button>
     </div>
   </div>
-</div>
-
-<div class="footer">
-  <div class="site-link">Powered By <a href="https://www.dafoxtech.com" target="_blank">DafoxTech.com</a></div>
 </div>

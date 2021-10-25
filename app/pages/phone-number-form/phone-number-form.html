@@ -1,26 +1,41 @@
 <div id="phone-number-page" class="container text-center page">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <form class="form">
+      <form class="form" data-bind="submit: submit">
         <div class="form-group">
           <br>
           <h1>
-            <strong>ENTER GLOBE PHONE NUMBER:</strong>
+            <strong>
+              Enter
+              <span data-bind="text: acc_phone_label()"></span>
+            </strong>
           </h1>
           <br>
-          <br>
-          <input class="phone-input form-control input-lg text-center" type="number" pattern="\d*" required id="phone_number" name="phone_number" placeholder="09xxxxxxxx" maxlength="15" minlength="5" autocomplete="off">
-          <h2 class="error text-right text-danger" style="line-height:70px">Invalid Phone Number</h2>
+          <input class="phone-input form-control input-lg text-center" type="number" pattern="\d*" required id="phone_number" name="phone_number" maxlength="15" minlength="5" autocomplete="off" data-bind="textInput: phone_number, attr: {placeholder: placeholder()}"></input>
+          
+          <!-- ko if: hint() -->
+          <small data-bind="text: hint()"></small>
+          <!-- /ko -->
+          
+          <!-- ko ifnot: isValid -->
+          <h2 class="error text-right text-danger" style="line-height:70px">
+            Invalid
+            <span data-bind="text: acc_phone_label()"></span>
+          </h2>
+          <!-- /ko -->
         </div>
       </form>
     </div>
   </div>
-  <br>
-  <br>
   <div class="row">
     <div class="col-md-offset-2 col-md-3">
-      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'" style="margin-left: 0px;">
-        Delete
+      <button class="btn btn-lg btn-primary btn-back" data-bind="click: delBack" style="margin-left: 0px;">
+        <!-- ko if: phone_number().length -->
+        <span>Delete</span>
+        <!-- /ko -->
+        <!-- ko ifnot: phone_number().length -->
+        <span>Back</span>
+        <!-- /ko -->
         <span class="number asterisk">*</span>
       </button>
     </div>

@@ -15,10 +15,12 @@ define([
     this.bodyStyle = imageBg ? {'background-image': 'url(' + encodeURI(imageBg) + ')'} : {};
 
     this.page = ko.observable('');
+    this.prev_page = ko.observable('');
     this.showingStatusNav = ko.observable(true);
     this.showingBanners = ko.observable(true);
     this.showingSessionsTable = ko.observable(true);
     this.navigate = function (page) {
+      this.prev_page(this.page());
       this.page(page);
     };
     this.currentPage = ko.pureComputed(function () {

@@ -1,83 +1,32 @@
-<div id="eload-page" class="container text-center">
+<div id="eload-page" class="container text-center page">
   <div class="row">
+    <!-- ko foreach: { data: providers } -->
     <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-globe-telecom" data-bind="click: selectProvider.bind(this, 'GLOBE')">
-        GLOBE
-        <span class="number">1</span>
+      <button class="btn btn-lg btn-primary" data-bind="click: $parent.selectProvider.bind(this, $data), class: $parent.formatBtnIcon(short_name)">
+        <span data-bind="text: short_name"></span>
+        <span class="number" data-bind="text: $index() + 1"></span>
       </button>
     </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-smart-telecom">
-        SMART
-        <span class="number">2</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-tnt-telecom">
-        TNT
-        <span class="number">3</span>
-      </button>
-    </div>
-  </div>
+    <!-- /ko -->
 
-  <div class="row">
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-sun-telecom">
-        SUN
-        <span class="number">4</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-dito-telecom">
-        DITO
-        <span class="number">5</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-tm-telecom">
-        TM
-        <span class="number">6</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-cherry-prepa-telecom">
-        CHERRY PRE.
-        <span class="number">7</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-cignal-telecom">
-        CIGNAL
-        <span class="number">8</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-gsat-telecom">
-        GSAT
-        <span class="number">9</span>
-      </button>
-    </div>
   </div>
   
   <div class="row">
     <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'">
+      <button class="btn btn-lg btn-primary btn-back" data-bind="click: back">
         Back
         <span class="number asterisk">*</span>
       </button>
     </div>
+
+    <!-- ko if: hasMore -->
     <div class="col-md-4 col-md-offset-4">
-      <button class="btn btn-lg btn-primary btn-next">
+      <button class="btn btn-lg btn-primary btn-next" data-bind="click: loadProviders.bind(this, page() + 1, 9)">
         Next
         <span class="number hash-sign">#</span>
       </button>
     </div>
-  </div>
-</div>
+    <!-- /ko -->
 
-<div class="footer">
-  <div class="site-link">Powered By <a href="https://www.dafoxtech.com" target="_blank">DafoxTech.com</a></div>
+  </div>
 </div>

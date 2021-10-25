@@ -1,10 +1,17 @@
 define([
   'app/utils/ajax',
   'toast',
-  'sounds'
-], function (ajax, toast, sounds) {
+  'sounds',
+  'app/utils/array.map'
+], function (ajax, toast, sounds, map) {
 
   function Http () {
+    function buildParams(opts){
+      return map(Object.keys(opts), function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(opts[k]);
+      }).join('&');
+    }
+
     var http = this;
     http.get = function (url, cb) {
       try {
@@ -48,20 +55,6 @@ define([
     http.fetchSessions = function (cb) {
       http.get('/client/sessions', cb);
     };
-    http.startSession = function(s_id, cb) {
-      http.post('/client/sessions/' + s_id + '/start', cb);
-    };
-    http.pauseSession = function (s_id, cb) {
-      http.post('/client/sessions/' + s_id + '/pause', cb);
-    };
-    http.fetchRates = function (cb) {
-      // http.get('/settings/timer/rates', cb);
-      cb(null, "{}")
-    };
-    http.fetchCoinslots = function (cb) {
-      http.get('/client/coinslots', cb);
-    };
-
     http.queForPayment = function (opts, cb) {
       var data = {
         coinslot_id: opts.coinslot_id,
@@ -99,28 +92,29 @@ define([
     };
 
     // Eload
-    http.checkEloadAvailability = function(cb) {
-      http.get('/client/eload/is-available', cb);
-    };
-
     http.getEloadClientData = function(acc_number, cb) {
       http.get('/client/eload/customer-data?account_number=' + acc_number, cb);
     };
 
-    http.getEloadProviders = function(acc_number, cb) {
-      http.get('/client/eload/providers?account_number=' + acc_number, cb);
+    http.getEloadProviders = function(opts, cb) {
+      http.get('/client/eload/providers?' + buildParams(opts), cb);
     };
 
     http.getEloadPromos = function(opts, cb) {
-      var params = Object.keys(opts).map(function (k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(opts[k]);
-      }).join('&');
-      http.get('/client/eload/promos?' + params, cb);
+      http.get('/client/eload/promos?' + buildParams(opts), cb);
     };
 
     http.getRegularDenoms = function(provider_id, cb) {
       http.get('/client/eload/regular-denoms?provider_id=' + provider_id, cb);
     };
+
+    http.newEloadOrder = function(order, cb) {
+      http.post('/client/eload/que-order', {
+        phone_number: order.phone_number,
+        product_keyword: order.product_keyword,
+        provider_id: order.provider_id
+      }, cb)
+    }
 
     http.activateEloadVoucher = function(account_number, code, cb) {
       http.post('/client/eload/activate-voucher', {

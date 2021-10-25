@@ -6,26 +6,30 @@ define([
   'sounds'
 ], function(ko, rootVM, tpl, socket, sounds) {
   function VM(params) {
-    var loader_icon = '<img src="/uploads/img/preloader.gif" style="width: 20px;margin: 10px;"/>';
+    var loader_icon = '<img src="/uploads/img/preloader.gif" style="width: 30px;margin: 20px 21px 31px;"/>';
     var self = this;
-    self.account_number = ko.observable(params.account_number);
-    self.title = ko.observable('Submitting Request');
+    self.phone_number = ko.observable(params.phone_number);
+    self.title = ko.observable('Processing Transaction');
     self.message = ko.observable('Please wait ...' + loader_icon);
     self.allow_retry = ko.observable(false);
     self.status = ko.observable('');
 
     self.close = function() {
       params.close();
-      rootVM.navigate('buy-eload-page');
+      rootVM.navigate('home-page');
     };
-    self.retry = self.close;
+
+    self.retry = function() {
+      params.close();
+      rootVM.navigate('eload-products-page');
+    }
 
     setTimeout(function() {
       if(!self.status() || self.status() === 'queued') {
         self.allow_retry(true);
         sounds.eload_queued.play();
       }
-    }, 60000);
+    }, 120000);
 
     sounds.eload_processing.play();
     self.onEloadStatus = function(data) {
@@ -43,7 +47,7 @@ define([
       self.status(data.status);
       self.title(data.title);
       self.message(message);
-      self.account_number(data.acc_number);
+      self.phone_number(data.phone_number);
     };
 
     socket().on('eload:status', self.onEloadStatus);
