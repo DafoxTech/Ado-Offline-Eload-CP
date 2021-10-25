@@ -3,10 +3,11 @@ define([
   'rootVM',
   'toast',
   'http',
+  'sounds',
   'app/observables/eload-order',
   'app/utils/array.reduce',
   'app/utils/array.findIndex'
-], function (ko, rootVM, toast, http, order, reduce, findIndex) {
+], function (ko, rootVM, toast, http, sounds, order, reduce, findIndex) {
 
   return function () {
     var self = this;
@@ -16,7 +17,10 @@ define([
     self.regular_denoms = ko.observableArray([])
     self.amounts_formatted = ko.observable('')
     self.submit = function () {
-      if(!self.isAvailable()) return
+      if(!self.isAvailable()) {
+        sounds.error.play()
+        return
+      }
       var k = self.product_keyword()
       order.setProduct({
         keyword: k,

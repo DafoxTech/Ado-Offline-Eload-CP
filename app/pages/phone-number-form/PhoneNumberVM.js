@@ -3,9 +3,10 @@ define([
   'rootVM',
   'toast',
   'http',
+  'sounds',
   'app/observables/eload-order',
   'app/utils/array.findIndex',
-], function (ko, rootVM, toast, http, order, findIndex) {
+], function (ko, rootVM, toast, http, sounds, order, findIndex) {
 
   return function () {
     var acc_number_providers = ['CIGNAL', 'MERALCO']
@@ -70,10 +71,7 @@ define([
     }
 
     self.phone_number.subscribe(function (v){
-      v = v.replaceAll('.', '')
-      v = v.replaceAll(' ', '')
-      v = v.replaceAll('-', '')
-      v = v.replaceAll(',', '')
+      v = v.replace(/\.|\-|\s|\,/, '')
       if (!self.isNonPhone()) {
         v = v.replace(/^00/, '0')
       }
@@ -84,6 +82,8 @@ define([
       if (validate(self.phone_number())) {
         order.setPhoneNumber(self.phone_number())
         rootVM.navigate('eload-products-page')
+      } else {
+        sounds.error.play()
       }
     }
     self.delBack = function () {
