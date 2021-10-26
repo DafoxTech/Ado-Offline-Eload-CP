@@ -5,12 +5,21 @@
         <div class="form-group">
           <br>
           <h1>
-            <strong>ENTER GCASH NUMBER:</strong>
+            <strong>
+              Enter
+              <span data-bind="text: provider_name"></span>
+              Number:
+            </strong>
           </h1>
           <br>
           <br>
-          <input class="phone-input form-control input-lg text-center" type="number" pattern="\d*" required id="phone_number" name="phone_number" placeholder="09xxxxxxxx" maxlength="15" minlength="5" autocomplete="off">
-          <h2 class="error text-right text-danger" style="line-height:70px">Invalid Phone Number</h2>
+          <input class="phone-input form-control input-lg text-center" type="number" pattern="\d*" required id="phone_number" name="phone_number" placeholder="09xxxxxxxx" maxlength="15" minlength="5" autocomplete="off" data-bind="textInput: phone_number">
+          <small>Please double check your phone number before submitting.</small>
+          <!-- ko ifnot: isValid -->
+          <h2 class="error text-right text-danger" style="line-height:70px">
+            Invalid mobile number
+          </h2>
+          <!-- /ko -->
         </div>
       </form>
     </div>
@@ -19,8 +28,13 @@
   <br>
   <div class="row">
     <div class="col-md-offset-2 col-md-3">
-      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'" style="margin-left: 0px;">
-        Delete
+      <button class="btn btn-lg btn-primary btn-back" data-bind="click: delBack" style="margin-left: 0px;">
+        <!-- ko if: phone_number().length -->
+        <span>Delete</span>
+        <!-- /ko -->
+        <!-- ko ifnot: phone_number().length -->
+        <span>Back</span>
+        <!-- /ko -->
         <span class="number asterisk">*</span>
       </button>
     </div>

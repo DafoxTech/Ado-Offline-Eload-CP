@@ -49,7 +49,11 @@ define([
     }
 
     self.back = function () {
-      rootVM.navigate('eload-products-page')
+      if (self.provider_name().toUpperCase() == 'GCASH') {
+        rootVM.navigate('emoney-products-page')
+      } else {
+        rootVM.navigate('eload-products-page')
+      }
       sounds.error.play()
     }
 

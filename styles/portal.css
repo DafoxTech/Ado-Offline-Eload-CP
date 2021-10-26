@@ -297,8 +297,8 @@ img.img-full {
   background-size: 60px;
   background-position: 5px;
 }
-.btn-gcash-icon {
-  background-image: url(../images/btn-icons/gcash-icon.png);
+.btn-gcash {
+  background-image: url(../images/btn-icons/gcash.png);
   background-repeat: no-repeat;
   background-size: 80px;
   background-position: 15px;

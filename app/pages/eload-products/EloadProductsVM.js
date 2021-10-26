@@ -73,7 +73,7 @@ define([
 
     self.search.subscribe(function(q) {
       if (!self.searching()) {
-        self.loadPromos()
+        self.loadPromos(1)
       }
     })
 
@@ -83,7 +83,7 @@ define([
 
     self.submitSearch = function() {
       self.searching(false)
-      self.loadPromos()
+      self.loadPromos(1)
     }
 
     self.formatBtnIcon = function () {

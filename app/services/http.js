@@ -150,6 +150,25 @@ define([
 
     // /eload
 
+
+    // Ewallet
+    http.getEwalletProviders = function(opts, cb) {
+      http.get('/client/ewallet/providers?' + buildParams(opts), cb);
+    };
+
+    http.getEwalletPromos = function(opts, cb) {
+      http.get('/client/ewallet/promos?' + buildParams(opts), cb);
+    };
+
+    http.newEwalletOrder = function(order, cb) {
+      http.post('/client/ewallet/que-order', {
+        phone_number: order.phone_number,
+        product_keyword: order.product_keyword,
+        provider_id: order.provider_id
+      }, cb)
+    }
+    // /ewallet
+
     http.logoutCustomer = function() {
       http.post('/customer/logout');
     };

@@ -47,7 +47,6 @@ define([
     self.isAvailable = function (){
       var list = self.regular_denoms()
       var v = self.product_keyword()
-      console.log(v, list)
       return findIndex(list, function(r){ return r == v }) >= 0
     }
 

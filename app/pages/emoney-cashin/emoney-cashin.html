@@ -1,20 +1,32 @@
 <div id="emoney-cashin-page" class="container text-center page">
   <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <button class="btn btn-lg btn-primary btn-gcash-icon" data-bind="click: selectProvider.bind(this, 'GCASH')">
-        GCASH
-        <span class="number">1</span>
+    <!-- ko foreach: { data: providers } -->
+    <div class="col-md-4">
+      <button class="btn btn-lg btn-primary" data-bind="click: $parent.selectProvider.bind(this, $data), class: $parent.formatBtnIcon(short_name)">
+        <span data-bind="text: short_name"></span>
+        <span class="number" data-bind="text: $index() + 1"></span>
       </button>
     </div>
+    <!-- /ko -->
 
   </div>
+  
   <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'">
+    <div class="col-md-4">
+      <button class="btn btn-lg btn-primary btn-back" data-bind="click: back">
         Back
         <span class="number asterisk">*</span>
       </button>
     </div>
-    
+
+    <!-- ko if: hasMore -->
+    <div class="col-md-4 col-md-offset-4">
+      <button class="btn btn-lg btn-primary btn-next" data-bind="click: loadProviders.bind(this, page() + 1, 9)">
+        Next
+        <span class="number hash-sign">#</span>
+      </button>
+    </div>
+    <!-- /ko -->
+
   </div>
 </div>
