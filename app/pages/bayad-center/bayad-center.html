@@ -1,92 +1,31 @@
 <div id="bayad-center-page" class="container text-center page">
   <div class="row">
-    <div class="col-md-12">
-      <form>
-        <div class="input-group">
-          <input class="search-input form-control input-lg text-center" type="text" id="search" name="search" placeholder="Press 0 to search" autocomplete="off">
-          <span class="input-group-addon" id="basic-addon1">
-            <span class="number">0</span>
-          </span>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="row">
+    <!-- ko foreach: { data: billers } -->
     <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-meralco" data-bind="click: selectBiller.bind(this, 'Biller1')">
-        MERALCO
-        <span class="number">1</span>
+      <button class="btn btn-lg btn-primary btn-biller" data-bind="click: $parent.selectBiller.bind(this, $data), style: { backgroundImage: 'url('+logo_preview+')' }">
+        <span data-bind="text: short_name"></span>
+        <span class="number" data-bind="text: $index() + 1"></span>
       </button>
     </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-smart-telecom">
-        MCWD
-        <span class="number">2</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-tnt-telecom">
-        VECO
-        <span class="number">3</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-sun-telecom">
-        GLOBE
-        <span class="number">4</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-dito-telecom">
-        PLDT
-        <span class="number">5</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-tm-telecom">
-        CEBECO I
-        <span class="number">6</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-cherry-prepa-telecom">
-        CEBECO II
-        <span class="number">7</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-cignal-telecom">
-        PAG-IBIG
-        <span class="number">8</span>
-      </button>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-gsat-telecom">
-        PHILHEALTH
-        <span class="number">9</span>
-      </button>
-    </div>
+    <!-- /ko -->
   </div>
   
   <div class="row">
     <div class="col-md-4">
-      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'">
+      <button class="btn btn-lg btn-primary btn-back" data-bind="click: back">
         Back
         <span class="number asterisk">*</span>
       </button>
     </div>
+
+    <!-- ko if: hasMore -->
     <div class="col-md-4 col-md-offset-4">
-      <button class="btn btn-lg btn-primary btn-next">
+      <button class="btn btn-lg btn-primary btn-next" data-bind="click: loadBillers.bind(this, page() + 1, 9)">
         Next
         <span class="number hash-sign">#</span>
       </button>
     </div>
+    <!-- /ko -->
+
   </div>
 </div>

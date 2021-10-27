@@ -19,27 +19,39 @@
             <tbody>
               <tr>
                 <td><h4><strong>Biller:&nbsp;</strong></h4></td>
-                <td><h4>Meralco</h4></td>
+                <td>
+                  <h4 data-bind="text: biller_short_name"></h4>
+                </td>
               </tr>
               <tr>
                 <td><h4><strong>Account Number:&nbsp;</strong></h4></td>
-                <td><h4>29103907717</h4></td>
+                <td>
+                  <h4 data-bind="text: account_number"></h4>
+                </td>
               </tr>
               <tr>
                 <td><h4><strong>Account Name:&nbsp;</strong></h4></td>
-                <td><h4>Arnel Lenteria</h4></td>
+                <td>
+                  <h4 data-bind="text: account_name"></h4>
+                </td>
               </tr>
               <tr>
                 <td><h4><strong>Phone Number:&nbsp;</strong></h4></td>
-                <td><h4>09103908818</h4></td>
+                <td>
+                  <h4 data-bind="text: phone_number"></h4>
+                </td>
               </tr>
               <tr>
                 <td><h4><strong>Amount Due:</strong></h4></td>
-                <td><h4>P10.00</h4></td>
+                <td>
+                  <h4 data-bind="text: amount_formatted"></h4>
+                </td>
               </tr>
               <tr>
                 <td><h4><strong>Due Date:</strong></h4></td>
-                <td><h4>03/28/2022</h4></td>
+                <td>
+                  <h4 data-bind="text: due_date"></h4>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -48,7 +60,9 @@
           <table class="text-left" style="width:100%">
             <tr>
               <td width="59%" style="padding-left:8px"><h4><strong>Total Amount:&nbsp;</strong></h4></td>
-              <td ><h4>P20.00</h4></td>
+              <td>
+                <h4 data-bind="text: total_amount_formatted"></h4>
+              </td>
             </tr>
           </table>
         </div>
@@ -59,18 +73,19 @@
       <div class="panel panel-primary">
         <div class="panel-heading"><h3>Your Credits</h3></div>
         <div class="panel-body">
-          <h1 class="acc-credits"> 
-            P0.00
-          </h1>
+          <h1 class="acc-credits" data-bind="text: account_credits_formatted"></h1>
         </div>
         <div class="panel-footer">
-          <h2><strong>To Pay:</strong> <span>P13.00</span></h2>
+          <h2>
+            <strong>To Pay:</strong>
+            <span data-bind="text: to_pay_formatted"></span>
+          </h2>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6">
-          <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'" style="margin-left: 0px;">
+          <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'bill-phone-number-page'" style="margin-left: 0px;">
             Cancel
             <span class="number asterisk">*</span>
           </button>

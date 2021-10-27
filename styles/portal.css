@@ -303,6 +303,12 @@ img.img-full {
   background-size: 80px;
   background-position: 15px;
 }
+.btn-biller {
+  background-repeat: no-repeat;
+  background-size: 55px;
+  background-position: 15px;
+}
+
 .btn .number, .input-group .number {
   border: 2px solid white;
   color: white;

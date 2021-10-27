@@ -5,19 +5,32 @@
         <div class="form-group">
           <br>
           <h1>
-            <strong>ENTER MERALCO ACCOUNT NUMBER:</strong>
+            <strong>
+              Enter
+              <span data-bind="text: account_number_label"></span>
+            </strong>
           </h1>
           <br>
-          <input class="account-input form-control input-lg text-center" type="number" pattern="\d*" required id="account_number" name="account_number" maxlength="15" minlength="5" autocomplete="off">
-          <h2 class="error text-right text-danger" style="line-height:70px">Invalid Account Number</h2>
+          <input class="account-input form-control input-lg text-center" type="number" pattern="\d*" required id="account_number" name="account_number" maxlength="15" minlength="5" autocomplete="off" data-bind="textInput: account_number" placeholder="xxxxxxxx">
+          <!-- ko ifnot: isValid -->
+          <h2 class="error text-right text-danger" style="line-height:70px">
+            Invalid
+            <span data-bind="text: account_number_label"></span>
+          </h2>
+          <!-- /ko -->
         </div>
       </form>
     </div>
   </div>
   <div class="row">
     <div class="col-md-offset-2 col-md-3">
-      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'bayad-center-page'" style="margin-left: 0px;">
-        Delete
+      <button class="btn btn-lg btn-primary btn-back" data-bind="click: delBack" style="margin-left: 0px;">
+        <!-- ko if: account_number().length -->
+        <span>Delete</span>
+        <!-- /ko -->
+        <!-- ko ifnot: account_number().length -->
+        <span>Back</span>
+        <!-- /ko -->
         <span class="number asterisk">*</span>
       </button>
     </div>

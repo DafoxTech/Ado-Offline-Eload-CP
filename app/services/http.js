@@ -150,7 +150,6 @@ define([
 
     // /eload
 
-
     // Ewallet
     http.getEwalletProviders = function(opts, cb) {
       http.get('/client/ewallet/providers?' + buildParams(opts), cb);
@@ -168,6 +167,23 @@ define([
       }, cb)
     }
     // /ewallet
+
+    // bills payment
+    http.getBillers = function(opts, cb) {
+      http.get('/client/bayad-center/billers?' + buildParams(opts), cb);
+    };
+
+    http.newBillsPayment = function(order, cb) {
+      http.post('/client/bayad-center/que-order', {
+        account_number: order.account_name,
+        account_name: order.account_name,
+        biller_id: order.biller_id,
+        amount: order.bill_amount,
+        phone_number: order.phone_number,
+        due_date: order.due_date
+      }, cb)
+    }
+    // /bills payment
 
     http.logoutCustomer = function() {
       http.post('/customer/logout');

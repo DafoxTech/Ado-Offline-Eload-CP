@@ -12,6 +12,9 @@ define([
     biller_id: ko.observable(''),
     bill_amount: ko.observable(''),
     due_date: ko.observable(''),
+    account_number_label: ko.observable(''),
+    account_name_label: ko.observable(''),
+    amount_label: ko.observable(''),
     setAccountNumber: function(number) {
       o.account_number(number)
     },
@@ -31,6 +34,9 @@ define([
       o.biller_name(biller.name)
       o.biller_short_name(biller.short_name)
       o.biller_id(biller.id)
+      o.account_number_label(biller.account_number_label)
+      o.account_name_label(biller.account_name_label)
+      o.amount_label(biller.amount_label)
     },
     set: function(payment) {
       o.biller_name(payment.biller_name)

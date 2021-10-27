@@ -6,17 +6,17 @@
           <br>
           <h1>
             <strong>
-              Enter Phone Number
+              Enter Bill Amount
             </strong>
           </h1>
           <br>
-          <input class="phone-input form-control input-lg text-center" type="number" pattern="\d*" required id="phone_number" name="phone_number" placeholder="09xxxxxxxx" maxlength="15" minlength="5" autocomplete="off" data-bind="textInput: phone_number"></input>
+          <input class="phone-input form-control input-lg text-center" type="number" pattern="\d*" required id="bill_amount" name="bill_amount" placeholder="0" minlength="1" autocomplete="off" data-bind="textInput: bill_amount"></input>
           
-          <small>SMS receipt and bill status notifications will be sent here.</small>
+          <small>Please enter exact amount with cents.</small>
           
           <!-- ko ifnot: isValid -->
           <h2 class="error text-right text-danger" style="line-height:70px">
-            Invalid Phone Number
+            Invalid Amount
           </h2>
           <!-- /ko -->
         </div>
@@ -27,10 +27,10 @@
   <div class="row">
     <div class="col-md-offset-2 col-md-3">
       <button class="btn btn-lg btn-primary btn-back" data-bind="click: delBack" style="margin-left: 0px;">
-        <!-- ko if: phone_number().length -->
+        <!-- ko if: bill_amount().length -->
         <span>Delete</span>
         <!-- /ko -->
-        <!-- ko ifnot: phone_number().length -->
+        <!-- ko ifnot: bill_amount().length -->
         <span>Back</span>
         <!-- /ko -->
         <span class="number asterisk">*</span>

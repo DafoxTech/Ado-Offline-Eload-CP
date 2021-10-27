@@ -13,6 +13,7 @@ define([
   './bill-due-date/BillDueDatePage.js',
   './bill-account-name/BillAccountNamePage.js',
   './bill-phone-number/BillPhoneNumberPage.js',
+  './bill-amount/BillAmountPage.js',
   './bill-paying/BillPayingPage.js',
   './order-kiosk/OrderKioskPage.js',
   './kiosk-checkout/KioskCheckoutPage.js',
