@@ -4,8 +4,7 @@
       <h1>PLEASE PAY NOW</h1>
       <br/>
       <div class="progress">
-        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-        </div>
+        <div data-bind="component: {name: 'progress-bar', params: {current: sTimeout, total: maxTimeout}}"></div>
       </div>
     </div>
   </div>
@@ -23,11 +22,13 @@
               </tr>
             </thead>
             <tbody>
+              <!-- ko foreach: { data: order_items } -->
               <tr>
-                <td>1 pc Fried chicken:&nbsp;</strong></h4></td>
-                <td>1</td>
-                <td>P199.00</td>
+                <td><span data-bind="text: name"></span>:&nbsp;</strong></h4></td>
+                <td data-bind="text: quantity"></td>
+                <td data-bind="text: $parent.formatPrice($data)"></td>
               </tr>
+              <!-- /ko -->
             </tbody>
           </table>
         </div>
@@ -35,7 +36,7 @@
           <table class="text-left" style="width:100%">
             <tr>
               <td width="59%" style="padding-left:8px"><h4><strong>Total Amount:&nbsp;</strong></h4></td>
-              <td><h4 class="text-center">P20.00</h4></td>
+              <td><h4 class="text-center" data-bind="text: total_price_formatted"></h4></td>
             </tr>
           </table>
         </div>
@@ -51,13 +52,16 @@
           </h1>
         </div>
         <div class="panel-footer">
-          <h2><strong>To Pay:</strong> <span>P13.00</span></h2>
+          <h2>
+            <strong>To Pay:</strong>
+            <span data-bind="text: total_price_formatted"></span>
+          </h2>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 col-md-offset-6">
-          <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'" style="margin-left: 0px;">
+          <button class="btn btn-lg btn-primary btn-back" data-bind="click: back" style="margin-left: 0px;">
             Cancel
             <span class="number asterisk">*</span>
           </button>

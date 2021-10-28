@@ -18,7 +18,7 @@ define([
     }
 
     self.phone_number.subscribe(function (v){
-      v = v.replace(/\.|\-|\s|\,/, '')
+      v = v.replace(/\.|\-|\s|\,|\*|\+|\-|\)|\(|\$|\#/, '')
       v = v.replace(/^00/, '0')
       self.phone_number(v)
     })

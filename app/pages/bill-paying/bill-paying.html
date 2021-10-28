@@ -4,8 +4,7 @@
       <h1>PLEASE PAY NOW</h1>
       <br/>
       <div class="progress">
-        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-        </div>
+        <div data-bind="component: {name: 'progress-bar', params: {current: sTimeout, total: maxTimeout}}"></div>
       </div>
 
     </div>
@@ -85,7 +84,7 @@
 
       <div class="row">
         <div class="col-md-6">
-          <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'bill-phone-number-page'" style="margin-left: 0px;">
+          <button class="btn btn-lg btn-primary btn-back" data-bind="click: back" style="margin-left: 0px;">
             Cancel
             <span class="number asterisk">*</span>
           </button>

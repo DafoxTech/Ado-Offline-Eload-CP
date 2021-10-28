@@ -25,8 +25,8 @@ define([
           var dd = splits[1].trim()
           var yy = splits[2].trim()
           isValid = mm.length >= 1 && dd.length >= 1 && yy.length == 4
-          isValid = isValid && parseInt(mm) >= 1 && parseInt(mm) <= 12 && parseInt(mm) >= cmonth
-          isValid = isValid && parseInt(dd) >= 1 && parseInt(dd) <= 31 && (parseInt(dd) > cday + 5 || parseInt(mm) > cmonth)
+          isValid = isValid && parseInt(dd) >= 1 && parseInt(dd) <= 31 && (parseInt(dd) > cday + 5 || parseInt(mm) > cmonth || parseInt(yy) > cyear)
+          isValid = isValid && parseInt(mm) >= 1 && parseInt(mm) <= 12 && (parseInt(mm) >= cmonth || parseInt(yy) > cyear)
           isValid = isValid && parseInt(yy) >= cyear && parseInt(yy) <= cyear + 1
         }
       }
@@ -41,6 +41,13 @@ define([
     }, self, 'beforeChange')
 
     self.due_date.subscribe(function (v){
+      if (v) {
+        var lastInput = v.substr(v.length-1)
+        if (lastInput != '/' && isNaN(lastInput)){
+          return self.due_date(v.substring(0, v.length-1))
+        }
+      }
+
       var plen = prev.length
       v = v.replace(/\.|\-|\s|\,/, '')
       var len = v.length

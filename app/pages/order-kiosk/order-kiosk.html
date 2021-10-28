@@ -1,56 +1,53 @@
 <div id="order-kiosk-page" class="container text-center page">
   <div class="menu">
     <div class="row">
+      <!-- ko foreach: { data: products } -->
       <div class="col-md-4">
-        <div class="jumbotron btn kiosk-product">
-          <span class="number">1</span>
-          <img src="http://images.summitmedia-digital.com/reportrworld/images/2020/09/10/2pcchickenmcdomeal435x320-v1-1599732884.jpg" style="width: 100%; ">
-          <h2>2 pcs fried chicken</h2>
-          <p>P199.00</p>
-          <p class="desc">Crispy super delicious fried chicken</p>
-        </div>
+        <button class="jumbotron btn kiosk-product" data-bind="click: $parent.addOrder.bind(this, $data), style: { backgroundImage: 'url('+photo_preview+')' }">
+          <span class="number" data-bind="text: $index() + 1"></span>
+          <img data-bind="attr: {src: photo_preview}" style="width: 100%; ">
+          <h2 data-bind="text: name"></h2>
+          <p data-bind="text: $parent.formatPrice(price)"></p>
+          <p class="desc" data-bind="text: description"></p>
+        </button>
       </div>
-      <div class="col-md-4">
-        <div class="jumbotron btn kiosk-product">
-          <span class="number">2</span>
-          <img src="http://images.summitmedia-digital.com/reportrworld/images/2020/09/10/2pcchickenmcdomeal435x320-v1-1599732884.jpg" style="width: 100%; ">
-          <h2>1 pc. fried chicken</h2>
-          <p>P99.00</p>
-          <p class="desc">Crispy super delicious fried chicken</p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="jumbotron btn kiosk-product">
-          <span class="number">3</span>
-          <img src="http://images.summitmedia-digital.com/reportrworld/images/2020/09/10/2pcchickenmcdomeal435x320-v1-1599732884.jpg" style="width: 100%; ">
-          <h2>1 bucket fried chicken</h2>
-          <p>P599.00</p>
-          <p class="desc">Crispy super delicious fried chicken</p>
-        </div>
-      </div>
+      <!-- /ko -->
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-3 col-md-offset-1">
-      <button class="btn btn-lg btn-primary btn-back" data-bind="navigate: 'home-page'">
+    <div class="col-md-4">
+      <button class="btn btn-lg btn-primary btn-back" data-bind="click: back">
         Back
         <span class="number asterisk">*</span>
       </button>
     </div>
+
     <div class="col-md-4">
-      <button class="btn btn-lg btn-primary checkout-btn" data-bind="click: checkout">
+      <button id="checkout" class="btn btn-lg btn-primary checkout-btn" data-bind="click: checkout, disable: !hasOrder()">
+        <!-- ko ifnot: hasOrder() -->
         <img src="images/cart-icon.png">
+        <!-- /ko -->
+        <!-- ko if: hasOrder() -->
+        <img src="images/cart-icon-red.png">
+        <!-- /ko -->
+
         Checkout
         <span class="number checkout">0</span>
+        
+        <!-- ko if: hasOrder() -->
+        <br/>
+        <small data-bind="text: '('+orders_count() + ' '+(orders_count()>1 ? 'Orders)' : 'Order)')" style="position:absolute;margin:-8px -28px -2px;"></small>
+        <!-- /ko -->
       </button>
     </div>
-    <div class="col-md-3">
-      <button class="btn btn-lg btn-primary btn-next">
-        Next
+
+    <!-- ko if: hasMore() -->
+    <div class="col-md-4">
+      <button class="btn btn-lg btn-primary btn-next" data-bind="click: loadProducts.bind(this, page() + 1)">
+        MORE
         <span class="number hash-sign">#</span>
       </button>
     </div>
-  </div>
+    <!-- /ko -->
 </div>

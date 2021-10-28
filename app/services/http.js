@@ -185,6 +185,15 @@ define([
     }
     // /bills payment
 
+    // /kiosk
+    http.getKioskProducts = function(opts, cb) {
+      http.get('/client/kiosk/products?' + buildParams(opts), cb);
+    }
+    http.queKioskOrder = function(order, cb) {
+      http.post('/client/kiosk/que-order', opts, cb);
+    }
+    // /kiosk
+
     http.logoutCustomer = function() {
       http.post('/customer/logout');
     };

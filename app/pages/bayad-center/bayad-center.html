@@ -1,5 +1,21 @@
 <div id="bayad-center-page" class="container text-center page">
   <div class="row">
+    <div class="col-md-12">
+      <form data-bind="submit: submitSearch">
+        <div class="input-group">
+          <input class="search-input form-control input-lg text-center" type="text" id="search" name="search" autocomplete="off" data-bind="textInput: search, attr: {placeholder: searching() ? 'Enter search query' : 'Press 0 to search'}" required>
+          <span class="input-group-addon" id="basic-addon1">
+            <!-- ko ifnot: searching -->
+            <span class="number" data-bind="click: searchingMode.bind(this)">0</span>
+            <!-- /ko -->
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- ko ifnot: searching -->
     <!-- ko foreach: { data: billers } -->
     <div class="col-md-4">
       <button class="btn btn-lg btn-primary btn-biller" data-bind="click: $parent.selectBiller.bind(this, $data), style: { backgroundImage: 'url('+logo_preview+')' }">
@@ -8,20 +24,41 @@
       </button>
     </div>
     <!-- /ko -->
+    <!-- /ko -->
+
+    <!-- ko if: search().length && !billers().length -->
+    <br>
+    <h2>No results found</h2>
+    <!-- /ko -->
   </div>
   
   <div class="row">
     <div class="col-md-4">
       <button class="btn btn-lg btn-primary btn-back" data-bind="click: back">
-        Back
+        <!-- ko if: searching() && search().length -->
+        <span>Delete</span>
+        <!-- /ko -->
+
+        <!-- ko if: !searching() || !search().length -->
+        <span>Back</span>
+        <!-- /ko -->
         <span class="number asterisk">*</span>
       </button>
     </div>
 
-    <!-- ko if: hasMore -->
+    <!-- ko if: hasMore() && !searching() -->
     <div class="col-md-4 col-md-offset-4">
-      <button class="btn btn-lg btn-primary btn-next" data-bind="click: loadBillers.bind(this, page() + 1, 9)">
+      <button class="btn btn-lg btn-primary btn-next" data-bind="click: loadBillers.bind(this, page() + 1)">
         Next
+        <span class="number hash-sign">#</span>
+      </button>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: searching -->
+    <div class="col-md-4 col-md-offset-4">
+      <button class="btn btn-lg btn-primary btn-next" data-bind="click: submitSearch">
+        Submit
         <span class="number hash-sign">#</span>
       </button>
     </div>

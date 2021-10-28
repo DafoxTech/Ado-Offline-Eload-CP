@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <form>
         <div class="input-group">
-          <input class="search-input form-control input-lg text-center" type="text" id="search" name="search" autocomplete="off" data-bind="textInput: search, attr: {placeholder: searching() ? 'Type to search' : 'Press 0 to search'}" required>
+          <input class="search-input form-control input-lg text-center" type="text" id="search" name="search" autocomplete="off" data-bind="textInput: search, attr: {placeholder: searching() ? 'Enter search query' : 'Press 0 to search biller'}" required>
           <span class="input-group-addon" id="basic-addon1">
             <!-- ko ifnot: searching -->
             <span class="number" data-bind="click: searchingMode.bind(this)">0</span>
