@@ -135,9 +135,9 @@ define([
       http.post('/customer/purchase', opts, cb);
     };
 
-    http.purchaseLoad = function(account_number, provider_id, product_keyword, voucher_id, cb) {
+    http.purchaseLoad = function(phone_number, provider_id, product_keyword, cb) {
       http.post('/client/eload/purchase', {
-        account_number: account_number,
+        phone_number: phone_number,
         provider_id: provider_id,
         product_keyword: product_keyword,
         voucher_id: voucher_id

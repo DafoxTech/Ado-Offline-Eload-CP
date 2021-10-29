@@ -12,15 +12,16 @@ define([
 
   return function () {
     var self = this;
+    var fetch_timeout = null;
     self.phone_number = order.phone_number;
     self.product_keyword = order.product_keyword;
     self.product_keyword_formatted = order.product_keyword;
     self.product_description = order.product_description;
     self.provider_name = order.provider_name;
     self.product_price = order.product_price
-    self.account_credits = order.account_credits
+    self.account_credits = ko.observable(parseInt(order.account_credits()))
     self.is_reprocess = order.is_reprocess;
-    self.maxTimeout = ko.observable(60*5)
+    self.maxTimeout = ko.observable(order.wait_payment_seconds())
     self.sTimeout = ko.observable(self.maxTimeout())
     var k = self.product_keyword()
     if (parseInt(k) > 0) {
@@ -28,10 +29,24 @@ define([
     }
     var price = parseInt(self.product_price())
     var credits = parseInt(self.account_credits())
-    self.to_pay = ko.observable(Math.max(0, price - credits))
+    var prev_amount = credits
+
+    self.to_pay = ko.computed(function() {
+      return Math.max(0, price - self.account_credits())
+    })
+
     self.price_formatted = ko.observable('P' + price + '.00')
-    self.account_credits_formatted = ko.observable('P' + credits + '.00')
-    self.to_pay_formatted = ko.observable('P' + self.to_pay() + '.00')
+    self.account_credits_formatted = ko.computed(function() {
+      return 'P' + self.account_credits().toFixed(2)
+    })
+
+    self.to_pay_formatted = ko.computed(function() {
+      return 'P' + self.to_pay().toFixed(2)
+    })
+
+    self.is_payment_ready = ko.computed(function() {
+      return self.is_reprocess() || price <= self.account_credits()
+    })
 
     self.acc_phone_label = function () {
       var pname = self.provider_name().toUpperCase()
@@ -45,7 +60,8 @@ define([
     }
 
     self.submit = function () {
-      modal.show('eload-processing', {phone_number: self.phone_number(), product_keyword: self.product_keyword()});
+      modal.show('eload-processing');
+      self.dispose()
     }
 
     self.back = function () {
@@ -66,15 +82,51 @@ define([
           rootVM.navigate('home-page')
         }
       }, 1000)
-    }
+
+      self.fetch();
+    };
+
+    self.fetch = function () {
+      http.currentPaymentQue(function (err, data) {
+        if (!err) {
+          self.onPaymentReceived(data);
+        }
+        fetch_timeout = setTimeout(function () {
+          self.fetch();
+        }, 2000);
+      });
+    };
 
     self.dispose = function () {
       sounds.insertCoin.stop();
       sounds.insertCoinBg.stop();
-      clearInterval(interval)
+      if (interval) clearInterval(interval);
+      if (fetch_timeout) clearTimeout(fetch_timeout);
     }
+
+    self.onPaymentReceived = function (data) {
+      var amount = data.total_amount
+      if (amount > 0 && prev_amount < amount) {
+        var amount_inserted = amount - prev_amount
+        toast.success('Payment Received: P' + amount_inserted.toFixed(2));
+        sounds.coinInserted.play();
+      }
+      self.account_credits(parseInt(data.customer_credits))
+      prev_amount = amount
+
+      if (self.is_payment_ready()) {
+        self.submit()
+      }
+    }
+
     sounds.insertCoin.play();
     sounds.insertCoinBg.play();
+
+    socket().on('payment:received', self.onPaymentReceived);
+    socket().on('payment:done', function(){
+      rootVM.navigate('home-page')
+    });
+
   };
 
 });
