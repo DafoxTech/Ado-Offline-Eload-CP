@@ -6,9 +6,10 @@ define([
   'modal',
   'app/observables/eload-order',
   'sounds',
+  'socket',
   'app/components/eload-processing/EloadProcessing',
   'app/components/progress-bar/ProgressBar'
-], function (ko, rootVM, toast, http, modal, order, sounds) {
+], function (ko, rootVM, toast, http, modal, order, sounds, socket) {
 
   return function () {
     var self = this;
@@ -29,7 +30,7 @@ define([
     }
     var price = parseInt(self.product_price())
     var credits = parseInt(self.account_credits())
-    var prev_amount = credits
+    var prev_amount = 0
 
     self.to_pay = ko.computed(function() {
       return Math.max(0, price - self.account_credits())
@@ -45,7 +46,7 @@ define([
     })
 
     self.is_payment_ready = ko.computed(function() {
-      return self.is_reprocess() || price <= self.account_credits()
+      return self.is_reprocess() || (price > 0 && price <= self.account_credits())
     })
 
     self.acc_phone_label = function () {
@@ -61,6 +62,7 @@ define([
 
     self.submit = function () {
       modal.show('eload-processing');
+      sounds.eload_processing.play()
       self.dispose()
     }
 
@@ -110,17 +112,20 @@ define([
         var amount_inserted = amount - prev_amount
         toast.success('Payment Received: P' + amount_inserted.toFixed(2));
         sounds.coinInserted.play();
+        
+        if (self.is_payment_ready()) {
+          self.submit()
+        }
       }
       self.account_credits(parseInt(data.customer_credits))
       prev_amount = amount
 
-      if (self.is_payment_ready()) {
-        self.submit()
-      }
     }
 
-    sounds.insertCoin.play();
-    sounds.insertCoinBg.play();
+    if (!self.is_payment_ready()) {
+      sounds.insertCoin.play();
+      sounds.insertCoinBg.play();
+    }
 
     socket().on('payment:received', self.onPaymentReceived);
     socket().on('payment:done', function(){

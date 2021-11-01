@@ -3,11 +3,11 @@
     <div class="">
       <h1>PLEASE PAY NOW</h1>
       <br/>
+      <!-- ko ifnot: is_payment_ready -->
       <div class="progress">
-        <!-- ko ifnot: is_payment_ready -->
         <div data-bind="component: {name: 'progress-bar', params: {current: sTimeout, total: maxTimeout}}"></div>
-        <!-- /ko -->
       </div>
+      <!-- /ko -->
 
     </div>
   </div>

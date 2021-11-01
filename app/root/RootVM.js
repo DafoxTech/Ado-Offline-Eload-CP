@@ -24,8 +24,8 @@ define([
       this.page(page);
     };
     this.currentPage = ko.pureComputed(function () {
-      if (device.is_paying()) return 'insert-coin-page';
-      else return self.page();
+      // if (device.is_paying()) return 'insert-coin-page';
+      return self.page();
     });
     this.showApp = function () {
       document.getElementById('loading').style.display = 'none';

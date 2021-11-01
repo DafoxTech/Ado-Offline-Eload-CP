@@ -139,8 +139,7 @@ define([
       http.post('/client/eload/purchase', {
         phone_number: phone_number,
         provider_id: provider_id,
-        product_keyword: product_keyword,
-        voucher_id: voucher_id
+        product_keyword: product_keyword
       }, cb);
     };
 

@@ -2,7 +2,7 @@ define([
   'knockout',
   'rootVM',
   'text!app/components/eload-processing/eload-processing.html',
-  'app/observables/eload-order'
+  'app/observables/eload-order',
   'socket',
   'sounds',
   'http'
@@ -16,7 +16,7 @@ define([
     self.allow_retry = ko.observable(false);
     self.status = ko.observable('');
 
-    https.purchaseLoad(self.phone_number(), order.provider_id(), order.product_keyword(), function(err, data) {})
+    http.purchaseLoad(self.phone_number(), order.provider_id(), order.product_keyword(), function(err, data) {})
 
     self.close = function() {
       params.close();

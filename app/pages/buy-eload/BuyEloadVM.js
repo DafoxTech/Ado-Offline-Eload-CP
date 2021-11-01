@@ -13,7 +13,6 @@ define([
     self.hasMore = ko.observable(false)
     order.reset()
     self.loadProviders = function (page, limit) {
-      console.log({page, limit})
       if (!limit) limit = 9
       if (!page) page = 1
       self.page(page)

@@ -30,7 +30,7 @@ define([
         if (!err) {
           order.product_price(data.eload_price)
           order.account_credits(data.customer_credits)
-          order.wait_payment_seconds(data.wait_payment_seconds)
+          order.wait_payment_seconds(data.max_wait_payment_seconds)
           order.is_reprocess(data.eload_status == 'queued')
           rootVM.navigate('eload-paying-page')
         }
