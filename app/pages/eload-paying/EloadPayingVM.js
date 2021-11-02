@@ -16,7 +16,7 @@ define([
     var fetch_timeout = null;
     self.phone_number = order.phone_number;
     self.product_keyword = order.product_keyword;
-    self.product_keyword_formatted = order.product_keyword;
+    self.product_keyword_formatted = ko.observable(order.product_keyword());
     self.product_description = order.product_description;
     self.provider_name = order.provider_name;
     self.product_price = order.product_price
@@ -61,18 +61,28 @@ define([
     }
 
     self.submit = function () {
-      modal.show('eload-processing');
+      if (self.provider_name().toUpperCase().includes('GCASH')) {
+        modal.show('emoney-processing');
+      }else{
+        modal.show('eload-processing');
+      }
+
       sounds.eload_processing.play()
       self.dispose()
+      http.donePayment(null, function(err){})
     }
 
     self.back = function () {
-      if (self.provider_name().toUpperCase() == 'GCASH') {
-        rootVM.navigate('emoney-products-page')
-      } else {
-        rootVM.navigate('eload-products-page')
-      }
-      sounds.error.play()
+      http.donePayment(null, function(err){
+        if(err) console.log(err)
+
+        if (self.provider_name().toUpperCase() == 'GCASH') {
+          rootVM.navigate('emoney-products-page')
+        } else {
+          rootVM.navigate('eload-products-page')
+        }
+        sounds.error.play()
+      })
     }
 
     var interval
@@ -107,6 +117,8 @@ define([
     }
 
     self.onPaymentReceived = function (data) {
+      self.account_credits(parseInt(data.customer_credits))
+      order.transaction_id(data.transaction_id)
       var amount = data.total_amount
       if (amount > 0 && prev_amount < amount) {
         var amount_inserted = amount - prev_amount
@@ -117,9 +129,7 @@ define([
           self.submit()
         }
       }
-      self.account_credits(parseInt(data.customer_credits))
       prev_amount = amount
-
     }
 
     if (!self.is_payment_ready()) {
@@ -128,9 +138,6 @@ define([
     }
 
     socket().on('payment:received', self.onPaymentReceived);
-    socket().on('payment:done', function(){
-      rootVM.navigate('home-page')
-    });
 
   };
 

@@ -3,8 +3,9 @@ define([
   'rootVM',
   'toast',
   'http',
+  'sounds',
   'app/observables/eload-order'
-], function (ko, rootVM, toast, http, order) {
+], function (ko, rootVM, toast, http, sounds, order) {
 
   return function () {
     var self = this;
@@ -44,6 +45,10 @@ define([
           order.account_credits(data.account_credits)
           order.is_reprocess(data.is_reprocess)
           rootVM.navigate('eload-paying-page')
+        } else {
+          var resp = JSON.parse(err.responseText)
+          toast.error(resp.error)
+          sounds.error.play()
         }
       })
     }

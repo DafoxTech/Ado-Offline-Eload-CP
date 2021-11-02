@@ -135,12 +135,8 @@ define([
       http.post('/customer/purchase', opts, cb);
     };
 
-    http.purchaseLoad = function(phone_number, provider_id, product_keyword, cb) {
-      http.post('/client/eload/purchase', {
-        phone_number: phone_number,
-        provider_id: provider_id,
-        product_keyword: product_keyword
-      }, cb);
+    http.purchaseLoad = function(opts, cb) {
+      http.post('/client/eload/purchase', opts, cb);
     };
 
     http.systemNotifications = function (cb) {

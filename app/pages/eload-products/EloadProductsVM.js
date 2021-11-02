@@ -3,8 +3,9 @@ define([
   'rootVM',
   'toast',
   'http',
+  'sounds',
   'app/observables/eload-order'
-], function (ko, rootVM, toast, http, order) {
+], function (ko, rootVM, toast, http, sounds, order) {
 
   return function () {
     var self = this;
@@ -50,6 +51,10 @@ define([
           order.wait_payment_seconds(data.max_wait_payment_seconds)
           order.is_reprocess(data.eload_status == 'queued')
           rootVM.navigate('eload-paying-page')
+        } else {
+          var resp = JSON.parse(err.responseText)
+          toast.error(resp.error)
+          sounds.error.play()
         }
       })
     }
@@ -96,6 +101,7 @@ define([
     }
 
     self.koDescendantsComplete = function () {
+      http.donePayment(null, function(err){})
       http.getRegularDenoms(provider_id, function(err, data){
         var hasRegular = data.length > 0
         self.supports_regular(hasRegular)

@@ -14,6 +14,7 @@ define([
     account_credits: ko.observable(0),
     is_reprocess: ko.observable(false),
     wait_payment_seconds: ko.observable(300),
+    transaction_id: ko.observable(),
     setPhoneNumber: function(phone) {
       o.phone_number(phone)
     },

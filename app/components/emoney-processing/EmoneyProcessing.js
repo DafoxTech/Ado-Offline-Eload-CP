@@ -1,7 +1,7 @@
 define([
   'knockout',
   'rootVM',
-  'text!app/components/eload-processing/eload-processing.html',
+  'text!app/components/emoney-processing/emoney-processing.html',
   'app/observables/eload-order',
   'socket',
   'sounds',
@@ -34,7 +34,7 @@ define([
 
     self.retry = function() {
       params.close();
-      rootVM.navigate('eload-products-page')
+      rootVM.navigate('emoney-products-page')
       self.cancelPaymentQue()
     }
 
@@ -45,7 +45,7 @@ define([
       }
     }, 120000);
 
-    self.onEloadStatus = function(data) {
+    self.onTxnStatus = function(data) {
       var message = data.message
       if(data.status === 'failed') {
         sounds.eload_failed.play()
@@ -63,10 +63,10 @@ define([
       self.phone_number(data.phone_number);
     };
 
-    socket().on('eload:status', self.onEloadStatus);
+    socket().on('eload:status', self.onTxnStatus);
 
     self.dispose = function () {
-      socket().removeListener('eload:status', self.onEloadStatus);
+      socket().removeListener('eload:status', self.onTxnStatus);
       self.cancelPaymentQue()
     };
 
@@ -75,7 +75,7 @@ define([
     }
   }
 
-  ko.components.register('eload-processing', {
+  ko.components.register('emoney-processing', {
     viewModel: VM,
     template: tpl
   });

@@ -33,6 +33,10 @@ define([
           order.wait_payment_seconds(data.max_wait_payment_seconds)
           order.is_reprocess(data.eload_status == 'queued')
           rootVM.navigate('eload-paying-page')
+        } else {
+          var resp = JSON.parse(err.responseText)
+          toast.error(resp.error)
+          sounds.error.play()
         }
       })
     }
