@@ -42,8 +42,9 @@ define([
       http.newEwalletOrder(order, function(err, data) {
         if (!err) {
           order.product_price(data.price)
-          order.account_credits(data.account_credits)
-          order.is_reprocess(data.is_reprocess)
+          order.account_credits(data.customer_credits)
+          order.is_reprocess(data.status == 'queued')
+          order.wait_payment_seconds(data.max_wait_payment_seconds)
           rootVM.navigate('eload-paying-page')
         } else {
           var resp = JSON.parse(err.responseText)

@@ -8,6 +8,7 @@ define([
   'sounds',
   'socket',
   'app/components/eload-processing/EloadProcessing',
+  'app/components/emoney-processing/EmoneyProcessing',
   'app/components/progress-bar/ProgressBar'
 ], function (ko, rootVM, toast, http, modal, order, sounds, socket) {
 
@@ -96,6 +97,12 @@ define([
       }, 1000)
 
       self.fetch();
+
+      if (!self.is_payment_ready()) {
+        sounds.insertCoin.play();
+        sounds.insertCoinBg.play();
+      }
+
     };
 
     self.fetch = function () {
@@ -110,6 +117,7 @@ define([
     };
 
     self.dispose = function () {
+      socket().removeListener('payment:received', self.onPaymentReceived);
       sounds.insertCoin.stop();
       sounds.insertCoinBg.stop();
       if (interval) clearInterval(interval);
@@ -130,11 +138,6 @@ define([
         }
       }
       prev_amount = amount
-    }
-
-    if (!self.is_payment_ready()) {
-      sounds.insertCoin.play();
-      sounds.insertCoinBg.play();
     }
 
     socket().on('payment:received', self.onPaymentReceived);

@@ -127,10 +127,6 @@ define([
       http.post('/client/eload/check-provider', { id: id, product_keyword: product_keyword }, cb);
     };
 
-    http.getRelatedTxn = function(account_number, product_keyword, cb) {
-      http.get('/client/eload/related-txn?account_number=' + account_number + '&product_keyword=' + product_keyword, cb);
-    };
-
     http.customerPurchase = function(opts, cb) {
       http.post('/customer/purchase', opts, cb);
     };
@@ -161,6 +157,10 @@ define([
         provider_id: order.provider_id
       }, cb)
     }
+
+    http.processEwalletOrder = function(opts, cb) {
+      http.post('/client/ewallet/purchase', opts, cb)
+    }    
     // /ewallet
 
     // bills payment

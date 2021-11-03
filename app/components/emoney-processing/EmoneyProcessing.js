@@ -17,7 +17,7 @@ define([
     self.status = ko.observable('');
     self.trace_number = ko.observable('')
 
-    http.purchaseLoad({
+    http.processEwalletOrder({
       phone_number: self.phone_number(),
       provider_id: order.provider_id(),
       product_keyword: order.product_keyword(),
@@ -63,10 +63,10 @@ define([
       self.phone_number(data.phone_number);
     };
 
-    socket().on('eload:status', self.onTxnStatus);
+    socket().on('txn:status', self.onTxnStatus);
 
     self.dispose = function () {
-      socket().removeListener('eload:status', self.onTxnStatus);
+      socket().removeListener('txn:status', self.onTxnStatus);
       self.cancelPaymentQue()
     };
 
