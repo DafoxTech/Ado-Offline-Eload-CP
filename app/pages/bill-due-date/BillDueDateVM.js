@@ -9,7 +9,7 @@ define([
 
   return function () {
     var self = this;
-    self.due_date = ko.observable(bill.due_date())
+    self.due_date = bill.due_date
     self.isValid = ko.observable(true)
 
     function validate(due_date){

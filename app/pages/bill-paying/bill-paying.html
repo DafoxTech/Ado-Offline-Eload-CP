@@ -3,9 +3,11 @@
     <div class="">
       <h1>PLEASE PAY NOW</h1>
       <br/>
+      <!-- ko ifnot: is_payment_ready -->
       <div class="progress">
         <div data-bind="component: {name: 'progress-bar', params: {current: sTimeout, total: maxTimeout}}"></div>
       </div>
+      <!-- /ko -->
 
     </div>
   </div>
@@ -23,27 +25,41 @@
                 </td>
               </tr>
               <tr>
-                <td><h4><strong>Account Number:&nbsp;</strong></h4></td>
+                <td>
+                  <h4><strong data-bind="text: account_number_label">Account Number:&nbsp;</strong></h4>
+                </td>
                 <td>
                   <h4 data-bind="text: account_number"></h4>
                 </td>
               </tr>
               <tr>
-                <td><h4><strong>Account Name:&nbsp;</strong></h4></td>
+                <td>
+                  <h4><strong data-bind="text: account_name_label">Account Name:&nbsp;</strong></h4>
+                </td>
                 <td>
                   <h4 data-bind="text: account_name"></h4>
                 </td>
               </tr>
               <tr>
-                <td><h4><strong>Phone Number:&nbsp;</strong></h4></td>
+                <td>
+                  <h4><strong>Phone Number:&nbsp;</strong></h4>
+                </td>
                 <td>
                   <h4 data-bind="text: phone_number"></h4>
                 </td>
               </tr>
               <tr>
-                <td><h4><strong>Amount Due:</strong></h4></td>
+                <td>
+                  <h4><strong data-bind="text: amount_label">Amount Due:</strong></h4>
+                </td>
                 <td>
                   <h4 data-bind="text: amount_formatted"></h4>
+                </td>
+              </tr>
+              <tr>
+                <td><h4><strong>Transaction Fee:</strong></h4></td>
+                <td>
+                  <h4 data-bind="text: transaction_fee_formatted"></h4>
                 </td>
               </tr>
               <tr>
@@ -60,7 +76,7 @@
             <tr>
               <td width="59%" style="padding-left:8px"><h4><strong>Total Amount:&nbsp;</strong></h4></td>
               <td>
-                <h4 data-bind="text: total_amount_formatted"></h4>
+                <h4 data-bind="text: price_formatted"></h4>
               </td>
             </tr>
           </table>
@@ -90,10 +106,17 @@
           </button>
         </div>
         <div class="col-md-6">
+          <!-- ko if: is_payment_ready -->
           <button class="btn btn-lg btn-primary btn-next" data-bind="click: submit">
-            Submit
+            <!-- ko if: is_reprocess -->
+            <span>Re-process</span>
+            <!-- /ko -->
+            <!-- ko ifnot: is_reprocess -->
+            <span>Submit</span>
+            <!-- /ko -->
             <span class="number hash-sign">#</span>
           </button>
+          <!-- /ko -->
         </div>
       </div>
     </div>

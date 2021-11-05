@@ -9,9 +9,9 @@ define([
 
   return function () {
     var self = this;
-    self.account_number = ko.observable(bills_payment.account_number())
-    self.biller_short_name = ko.observable(bills_payment.biller_short_name())
-    self.account_number_label = ko.observable(bills_payment.account_number_label())
+    self.account_number = bills_payment.account_number
+    self.biller_short_name = bills_payment.biller_short_name
+    self.account_number_label = bills_payment.account_number_label
     self.isValid = ko.observable(true)
 
     function validate(account_number){

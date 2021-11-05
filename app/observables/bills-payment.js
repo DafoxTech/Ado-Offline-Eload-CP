@@ -15,6 +15,13 @@ define([
     account_number_label: ko.observable(''),
     account_name_label: ko.observable(''),
     amount_label: ko.observable(''),
+    price: ko.observable(0),
+    account_credits: ko.observable(0),
+    is_reprocess: ko.observable(false),
+    wait_payment_seconds: ko.observable(300),
+    transaction_id: ko.observable(),
+    transaction_fee: ko.observable(0),
+    trace_number: ko.observable(0),
     setAccountNumber: function(number) {
       o.account_number(number)
     },

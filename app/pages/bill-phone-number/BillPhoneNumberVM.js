@@ -26,7 +26,21 @@ define([
     self.submit = function () {
       if (validate(self.phone_number())) {
         bill.setPhoneNumber(self.phone_number())
-        rootVM.navigate('bill-paying-page')
+        http.newBillsPayment(bill, function(err, data){
+          if (!err) {
+            bill.price(data.price)
+            bill.account_credits(data.customer_credits)
+            bill.wait_payment_seconds(data.max_wait_payment_seconds)
+            bill.transaction_fee(data.transaction_fee)
+            bill.is_reprocess(data.status == 'queued')
+            rootVM.navigate('bill-paying-page')
+          } else {
+            var resp = JSON.parse(err.responseText)
+            toast.error(resp.error)
+            sounds.error.play()
+            http.donePayment(null, function(){})
+          }
+        })
       } else {
         sounds.error.play()
       }

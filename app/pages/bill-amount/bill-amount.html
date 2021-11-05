@@ -6,11 +6,12 @@
           <br>
           <h1>
             <strong>
-              Enter Bill Amount
+              Enter
+              <span data-bind="text: amount_label"></span>
             </strong>
           </h1>
           <br>
-          <input class="phone-input form-control input-lg text-center" type="number" pattern="\d*" required id="bill_amount" name="bill_amount" placeholder="0" minlength="1" autocomplete="off" data-bind="textInput: bill_amount"></input>
+          <input class="phone-input form-control input-lg text-center" step="0.01" type="number" required id="bill_amount" name="bill_amount" placeholder="0" minlength="1" autocomplete="off" data-bind="textInput: bill_amount"></input>
           
           <small>Please enter exact amount with cents.</small>
           

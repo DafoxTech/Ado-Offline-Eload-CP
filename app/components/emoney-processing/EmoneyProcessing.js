@@ -10,7 +10,7 @@ define([
   function VM(params) {
     var loader_icon = '<img src="/uploads/img/preloader.gif" style="width: 30px;margin: 20px 21px 31px;"/>';
     var self = this;
-    self.phone_number = ko.observable(order.phone_number());
+    self.phone_number = order.phone_number
     self.title = ko.observable('Processing Transaction');
     self.message = ko.observable('Please wait ...' + loader_icon);
     self.allow_retry = ko.observable(false);

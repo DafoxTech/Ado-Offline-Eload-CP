@@ -17,13 +17,13 @@ define([
     var fetch_timeout = null;
     self.phone_number = order.phone_number;
     self.product_keyword = order.product_keyword;
-    self.product_keyword_formatted = ko.observable(order.product_keyword());
+    self.product_keyword_formatted = order.product_keyword
     self.product_description = order.product_description;
     self.provider_name = order.provider_name;
     self.product_price = order.product_price
-    self.account_credits = ko.observable(parseInt(order.account_credits()))
     self.is_reprocess = order.is_reprocess;
-    self.maxTimeout = ko.observable(order.wait_payment_seconds())
+    self.account_credits = ko.observable(parseInt(order.account_credits()))
+    self.maxTimeout = ko.observable(parseInt(order.wait_payment_seconds()))
     self.sTimeout = ko.observable(self.maxTimeout())
     var k = self.product_keyword()
     if (parseInt(k) > 0) {
@@ -122,6 +122,7 @@ define([
       sounds.insertCoinBg.stop();
       if (interval) clearInterval(interval);
       if (fetch_timeout) clearTimeout(fetch_timeout);
+      http.donePayment(null, function(){})
     }
 
     self.onPaymentReceived = function (data) {
@@ -130,7 +131,7 @@ define([
       var amount = data.total_amount
       if (amount > 0 && prev_amount < amount) {
         var amount_inserted = amount - prev_amount
-        toast.success('Payment Received: P' + amount_inserted.toFixed(2));
+        // toast.success('Payment Received: P' + amount_inserted.toFixed(2));
         sounds.coinInserted.play();
         
         if (self.is_payment_ready()) {

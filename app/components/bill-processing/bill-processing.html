@@ -5,40 +5,106 @@
 <div class="modal-body text-center">
    <h2 data-bind="html: message">
     Please wait ...
-    <!-- <table style="margin: 0 auto;">
-      <tbody>
-        <tr>
-          <td class="text-left">Phone #:&nbsp;&nbsp;</td>
-          <td class="text-left">09103907717</td>
-        </tr>
-        <tr>
-          <td class="text-left">E-Load:&nbsp;&nbsp;</td>
-          <td class="text-left">P10.00</td>
-        </tr>
-        <tr>
-          <td class="text-left">Price:&nbsp;&nbsp;</td>
-          <td class="text-left">P13.00</td>
-        </tr>
-        <tr>
-          <td class="text-left">Ref #:&nbsp;&nbsp;</td>
-          <td class="text-left">918251</td>
-        </tr>
-        <tr>
-          <td class="text-left">Balance:&nbsp;&nbsp;</td>
-          <td class="text-left">P3.00</td>
-        </tr>
-      </tbody>
-    </table> -->
   </h2>
+
   <!-- ko if: status() == 'succeed' -->
-    <img src="images/check-icon.png" style="width: 40px; margin: 21px 11px 10px;">
+  <img src="images/check-icon.png" style="width: 40px; margin: 21px 11px 10px;">
   <!-- /ko -->
+
+  <!-- ko if: status() == 'failed' -->
+  <img src="images/wrong-icon.png" style="width: 40px; margin: 21px 11px 10px;">
+  <!-- /ko -->
+
+  <!-- ko if: status() == 'succeed' || status() == 'failed' -->
+  <table style="margin: 0 auto;">
+    <tbody>
+      <tr>
+        <td class="text-left">Ref #:&nbsp;&nbsp;</td>
+        <td class="text-left">
+          <span data-bind="text: trace_number"></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">
+          Phone #:&nbsp;&nbsp;
+        </td>
+        <td class="text-left">
+          <span data-bind="text: phone_number"></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">
+          Biller:&nbsp;&nbsp;
+        </td>
+        <td class="text-left">
+          <span data-bind="text: biller_name"></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">
+          <span data-bind="text: account_number_label"></span>:&nbsp;
+        </td>
+        <td class="text-left">
+          <span data-bind="text: account_number"></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">
+          <span data-bind="text: amount_label"></span>:&nbsp;
+        </td>
+        <td class="text-left">
+          <span data-bind="text: amount_formatted"></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">
+          Txn Fee:
+        </td>
+        <td class="text-left">
+          <span data-bind="text: txn_fee_formatted"></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">
+          Total Payable:&nbsp;
+        </td>
+        <td class="text-left">
+          <span data-bind="text: price_formatted"></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-left">
+          <!-- ko if: status() == 'succeed' -->
+          <span>Balance:&nbsp;</span>
+          <!-- /ko -->
+
+          <!-- ko if: status() == 'failed' -->
+          <span>Refunded:&nbsp;</span>
+          <!-- /ko -->
+        </td>
+        <td class="text-left">
+          <span data-bind="text: balance_formatted"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <small>
+    Remaining balance will be adjusted on your next transaction.
+    <br/>
+    Please take a picture of this confirmation for your reference, thank you.
+  </small>
+  <!-- /ko -->
+
 </div>
 
 <div class="modal-footer eload-processing" style="text-align: center;">
- <!-- ko if: allow_retry() -->
-  <h2 class="text-warning text-left">PAUMANHIN: Medyo matagal ang pag process ng inyong request. Kung hindi mo natanggap ang load, maghintay ng ilang sandali at e-retry.</h2>
+  <!-- ko if: allow_retry() -->
+  <h2 class="text-warning text-left">PAUMANHIN: Medyo matagal ang pag process ng inyong request. Kung walang natanggap na sms receipt, maghintay ng ilang sandali at e-retry.</h2>
   <br>
+  <!-- /ko -->
+
+  <!-- ko if: allow_retry() || status() == 'failed' -->
   <button class="btn btn-warning btn-lg" data-bind="click: retry">
    Re-Try Now
     <span class="number hash-sign">#</span>
@@ -48,10 +114,9 @@
   <!-- /ko -->
 
   <!-- ko if: status() == 'succeed' -->
-
-  <h2 class="text-warning">
-    SMS receipt has been sent to your phone number. Thank you!
-  </h2>
+  <h4 class="text-warning">
+    SMS receipt has been sent to your phone number. Please take a picture of this confirmation for your reference, thank you!
+  </h4>
   <br/>
   <button class="btn btn-success btn-lg" data-bind="click: close">
     OK
@@ -61,16 +126,4 @@
   <br>
   <!-- /ko -->
 
-  <!-- ko if: status() == 'failed' -->
-  <h2 class="text-danger">
-    Temporary Unavailable
-  </h2>
-  <br/>
-  <button class="btn btn-danger btn-lg" data-bind="click: retry">
-    Re-Try
-    <span class="number hash-sign">#</span>
-  </button>
-  <br>
-  <br>
-  <!-- /ko -->
 </div>

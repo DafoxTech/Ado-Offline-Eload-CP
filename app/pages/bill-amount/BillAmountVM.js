@@ -9,7 +9,8 @@ define([
 
   return function () {
     var self = this;
-    self.bill_amount = ko.observable(bill.bill_amount())
+    self.bill_amount = bill.bill_amount
+    self.amount_label = bill.amount_label
     self.isValid = ko.observable(true)
     function validate(bill_amount){
       var isValid = !isNaN(parseInt(bill_amount)) && parseInt(bill_amount) > 10

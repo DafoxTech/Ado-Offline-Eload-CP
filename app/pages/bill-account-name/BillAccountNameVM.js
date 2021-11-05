@@ -9,8 +9,8 @@ define([
 
   return function () {
     var self = this;
-    self.account_name = ko.observable(bill.account_name());
-    self.account_name_label = ko.observable(bill.account_name_label());
+    self.account_name = bill.account_name
+    self.account_name_label = bill.account_name_label
     self.isValid = ko.observable(true)
 
     function validate(account_name){
@@ -40,7 +40,7 @@ define([
         self.account_name(num.substring(0, num.length-1))
       } else {
         bill.setAccountName('')
-        rootVM.navigate('bill-account-number-page')
+        rootVM.navigate('bill-amount-page')
       }
     }
   };

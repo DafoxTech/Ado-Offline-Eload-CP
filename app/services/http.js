@@ -170,13 +170,16 @@ define([
 
     http.newBillsPayment = function(order, cb) {
       http.post('/client/bayad-center/que-order', {
-        account_number: order.account_name,
+        account_number: order.account_number,
         account_name: order.account_name,
         biller_id: order.biller_id,
         amount: order.bill_amount,
         phone_number: order.phone_number,
         due_date: order.due_date
       }, cb)
+    }
+    http.processBill = function(opts, cb) {
+      http.post('/client/bayad-center/process-bill', opts, cb)
     }
     // /bills payment
 
